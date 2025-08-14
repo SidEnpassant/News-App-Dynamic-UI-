@@ -4,7 +4,7 @@ import 'package:newsapp/data/models/article.dart';
 
 class NewsService {
   // Replace with your actual API key from newsapi.org
-  static const String _apiKey = '651a1dfc2ca345df91b92471cce8f6de';
+  static const String _apiKey = 'YOUR API KEY';
   static const String _baseUrl = 'https://newsapi.org/v2';
 
   Future<List<NewsArticle>> fetchTopHeadlines({String country = 'us'}) async {
