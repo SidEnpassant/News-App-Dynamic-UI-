@@ -3,8 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:newsapp/data/models/article.dart';
 
 class NewsService {
-  // Replace with your actual API key from newsapi.org
-  static const String _apiKey = '651a1dfc2ca345df91b92471cce8f6de';
+  static const String _apiKey = 'YOUR API KEY';
   static const String _baseUrl = 'https://newsapi.org/v2';
 
   Future<List<NewsArticle>> fetchTopHeadlines({String country = 'us'}) async {
@@ -21,7 +20,7 @@ class NewsService {
         return articles
             .map((articleJson) => NewsArticle.fromJson(articleJson))
             .where((article) => article.title != '[Removed]')
-            .take(20) // Cache only 20 items as required
+            .take(20) 
             .toList();
       } else {
         throw Exception('Failed to load news: ${response.statusCode}');

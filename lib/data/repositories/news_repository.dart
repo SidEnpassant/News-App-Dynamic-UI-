@@ -11,7 +11,6 @@ class NewsRepository {
 
   Future<List<NewsArticle>> getTopHeadlines({bool forceRefresh = false}) async {
     try {
-      // Check cache first if not forcing refresh
       if (!forceRefresh && _cacheService.isCacheValid()) {
         final cachedNews = await _cacheService.getCachedNews();
         if (cachedNews != null && cachedNews.isNotEmpty) {
@@ -19,15 +18,12 @@ class NewsRepository {
         }
       }
 
-      // Fetch from API
       final articles = await _newsService.fetchTopHeadlines();
 
-      // Cache the results
       await _cacheService.cacheNews(articles);
 
       return articles;
     } catch (e) {
-      // If API fails, try to return cached data
       final cachedNews = await _cacheService.getCachedNews();
       if (cachedNews != null && cachedNews.isNotEmpty) {
         return cachedNews;

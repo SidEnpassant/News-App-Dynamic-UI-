@@ -105,7 +105,6 @@ class _NewsListState extends State<NewsList>
         Expanded(
           child: RefreshIndicator(
             onRefresh: () async {
-              // Trigger refresh through parent widget
             },
             child: ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 16),
