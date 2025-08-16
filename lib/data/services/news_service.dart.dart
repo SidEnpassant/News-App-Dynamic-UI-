@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:newsapp/appcredentials.dart';
 import 'package:newsapp/data/models/article.dart';
 
 class NewsService {
-  static const String _apiKey = 'YOUR API KEY';
+  static const String _apiKey = Appcredentials.apiKey;
   static const String _baseUrl = 'https://newsapi.org/v2';
 
   Future<List<NewsArticle>> fetchTopHeadlines({String country = 'us'}) async {
@@ -20,7 +21,7 @@ class NewsService {
         return articles
             .map((articleJson) => NewsArticle.fromJson(articleJson))
             .where((article) => article.title != '[Removed]')
-            .take(20) 
+            .take(20)
             .toList();
       } else {
         throw Exception('Failed to load news: ${response.statusCode}');
